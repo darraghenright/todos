@@ -19,6 +19,9 @@ config :todos, TodosWeb.Endpoint,
       "--watch-stdin",
       cd: Path.expand("../assets", __DIR__)
     ]
+  ],
+  live_view: [
+    signing_salt: "KTnodnK7ueNDyn3QfdeX6AW8f7Hfyy+v"
   ]
 
 # ## SSL Support

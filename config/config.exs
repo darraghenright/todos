@@ -12,7 +12,10 @@ config :todos, TodosWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Os+/FXkSZ0QyTYfiWnjZGyK9LN6oUUnQSy/Bz72svda8BnHIlrtaqF0Z5pJnmBtp",
   render_errors: [view: TodosWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Todos.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Todos.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: {:system, "LIVE_VIEW_SIGNING_SALT"}
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

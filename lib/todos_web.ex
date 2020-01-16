@@ -21,6 +21,7 @@ defmodule TodosWeb do
     quote do
       use Phoenix.Controller, namespace: TodosWeb
 
+      import Phoenix.LiveView.Controller
       import Plug.Conn
       import TodosWeb.Gettext
       alias TodosWeb.Router.Helpers, as: Routes
@@ -39,6 +40,8 @@ defmodule TodosWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
+      import Phoenix.LiveView, only: [live_render: 2, live_render: 3, live_link: 1, live_link: 2,
+        live_component: 2, live_component: 3, live_component: 4]
       import TodosWeb.ErrorHelpers
       import TodosWeb.Gettext
       alias TodosWeb.Router.Helpers, as: Routes
@@ -48,8 +51,9 @@ defmodule TodosWeb do
   def router do
     quote do
       use Phoenix.Router
-      import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
+      import Plug.Conn
     end
   end
 
