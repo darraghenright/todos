@@ -19,6 +19,12 @@ defmodule Todos.TodoTest do
     assert_raise UndefinedFunctionError, fn -> Todo.new() end
   end
 
+  test "a todo constructor text field must be a non empty string" do
+    assert_raise FunctionClauseError, fn -> Todo.new(123) end
+    assert_raise FunctionClauseError, fn -> Todo.new("") end
+    assert "Eat dinner" == Todo.new("Eat dinner").text
+  end
+
   test "a todo text field can be updated", %{todo: todo} do
     assert "Order pizza" == Todo.update(todo, "Order pizza").text
   end
