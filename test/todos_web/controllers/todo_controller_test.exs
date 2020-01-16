@@ -1,4 +1,4 @@
-defmodule TodosWeb.PageControllerTest do
+defmodule TodosWeb.TodoControllerTest do
   use TodosWeb.ConnCase
 
   # test "GET /", %{conn: conn} do
