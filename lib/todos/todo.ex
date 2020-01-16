@@ -10,6 +10,10 @@ defmodule Todos.Todo do
     %Todo{id: UUID.uuid4(), text: text}
   end
 
+  def update(%Todo{} = todo, text) do
+    %Todo{todo | text: text}
+  end
+
   def complete(%Todo{} = todo) do
     %Todo{todo | complete?: true}
   end

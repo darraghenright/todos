@@ -31,6 +31,25 @@ defmodule Todos.TodoListTest do
     assert [todo_b, todo_a] == todo_list.todos
   end
 
+  test "find todo index in todo_list", %{todo_list: todo_list, todo_a: todo} do
+    assert nil == TodoList.find(todo_list, todo)
+    todo_list = TodoList.add(todo_list, todo)
+    assert 0 == TodoList.find(todo_list, todo)
+  end
+
+  test "update a todo in todo_list", %{todo_list: todo_list, todo_a: todo} do
+    todo_list = TodoList.add(todo_list, todo)
+    updated_todo = Todo.update(todo, "Order pizza")
+    todo_list = TodoList.update(todo_list, updated_todo)
+    assert [updated_todo] = todo_list.todos
+  end
+
+  test "cannot update todo if not in todo_list", %{todo_list: todo_list} do
+    todo = Todo.new("Burnish mantlepiece")
+    todo_list = TodoList.update(todo_list, todo)
+    assert [] = todo_list.todos
+  end
+
   test "remove complete todos from a todo_list", %{todo_list: todo_list, todo_a: todo_a, todo_b: todo_b} do
     todo_list =
       todo_list

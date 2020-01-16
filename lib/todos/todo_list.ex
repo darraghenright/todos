@@ -11,6 +11,20 @@ defmodule Todos.TodoList do
     %TodoList{todo_list | todos: [todo | todos]}
   end
 
+  def find(%TodoList{todos: todos}, %Todo{} = todo) do
+    Enum.find_index(todos, & &1.id == todo.id)
+  end
+
+  def update(%TodoList{todos: todos} = todo_list, %Todo{} = todo) do
+    todos =
+      case TodoList.find(todo_list, todo) do
+        nil -> todos
+        position -> List.replace_at(todos, position, todo)
+      end
+
+    %TodoList{todo_list | todos: todos}
+  end
+
   def count(%TodoList{} = todo_list) do
     length(todo_list.todos)
   end

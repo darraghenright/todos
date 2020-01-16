@@ -19,6 +19,10 @@ defmodule Todos.TodoTest do
     assert_raise UndefinedFunctionError, fn -> Todo.new() end
   end
 
+  test "a todo text field can be updated", %{todo: todo} do
+    assert "Order pizza" == Todo.update(todo, "Order pizza").text
+  end
+
   test "a new todo is not complete", %{todo: todo} do
     assert false == todo.complete?
   end
