@@ -36,4 +36,16 @@ defmodule Todos.TodoTest do
   test "a todo can be marked complete", %{todo: todo} do
     assert true == Todo.complete(todo).complete?
   end
+
+  test "a todo can be marked incomplete", %{todo: todo} do
+    assert false == Todo.uncomplete(todo).complete?
+  end
+
+  test "a todo can be toggled complete or incomplete", %{todo: todo} do
+    assert false == todo.complete?
+    todo = Todo.toggle_complete(todo)
+    assert true == todo.complete?
+    todo = Todo.toggle_complete(todo)
+    assert false == todo.complete?
+  end
 end

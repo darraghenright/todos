@@ -18,4 +18,15 @@ defmodule Todos.Todo do
   def complete(%Todo{} = todo) do
     %Todo{todo | complete?: true}
   end
+
+  def uncomplete(%Todo{} = todo) do
+    %Todo{todo | complete?: false}
+  end
+
+  def toggle_complete(%Todo{} = todo) do
+    case todo.complete? do
+      false -> Todo.complete(todo)
+      true -> Todo.uncomplete(todo)
+    end
+  end
 end
