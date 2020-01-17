@@ -25,8 +25,22 @@ defmodule Todos.TodoList do
     %TodoList{todo_list | todos: todos}
   end
 
-  def count(%TodoList{} = todo_list) do
-    length(todo_list.todos)
+  def delete(%TodoList{todos: todos} = todo_list, %Todo{} = todo) do
+    todos =
+      case TodoList.find(todo_list, todo) do
+        nil -> todos
+        position -> List.delete_at(todos, position)
+      end
+
+    %TodoList{todo_list | todos: todos}
+  end
+
+  def count_all(%TodoList{todos: todos}) do
+    length(todos)
+  end
+
+  def count_incomplete(%TodoList{todos: todos}) do
+    Enum.count(todos, & !&1.complete?)
   end
 
   def clear_complete(%TodoList{todos: todos} = todo_list) do

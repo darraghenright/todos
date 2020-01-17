@@ -12,12 +12,12 @@ defmodule Todos.TodoListTest do
   end
 
   test "a new todo_list is empty", %{todo_list: todo_list} do
-    assert 0 == TodoList.count(todo_list)
+    assert 0 == TodoList.count_all(todo_list)
   end
 
   test "add a todo to a new todo_list", %{todo_list: todo_list, todo_a: todo} do
     todo_list = TodoList.add(todo_list, todo)
-    assert 1 == TodoList.count(todo_list)
+    assert 1 == TodoList.count_all(todo_list)
     assert [todo] == todo_list.todos
   end
 
@@ -27,7 +27,7 @@ defmodule Todos.TodoListTest do
       |> TodoList.add(todo_a)
       |> TodoList.add(todo_b)
 
-    assert 2 == TodoList.count(todo_list)
+    assert 2 == TodoList.count_all(todo_list)
     assert [todo_b, todo_a] == todo_list.todos
   end
 
@@ -50,6 +50,28 @@ defmodule Todos.TodoListTest do
     assert [] = todo_list.todos
   end
 
+  test "delete a todo from a todo_list", %{todo_list: todo_list, todo_a: todo} do
+    todo_list = TodoList.add(todo_list, todo)
+    assert [todo] = todo_list.todos
+    todo_list = TodoList.delete(todo_list, todo)
+    assert [] = todo_list.todos
+  end
+
+  test "count incomplete todos in a todo_list", %{todo_list: todo_list, todo_a: todo_a, todo_b: todo_b} do
+    todo_list =
+      todo_list
+      |> TodoList.add(todo_a)
+      |> TodoList.add(todo_b)
+
+    assert 2 == TodoList.count_incomplete(todo_list)
+
+    todo_list = TodoList.update(todo_list, Todo.complete(todo_a))
+    assert 1 = TodoList.count_incomplete(todo_list)
+
+    todo_list = TodoList.update(todo_list, Todo.complete(todo_b))
+    assert 0 = TodoList.count_incomplete(todo_list)
+  end
+
   test "remove complete todos from a todo_list", %{todo_list: todo_list, todo_a: todo_a, todo_b: todo_b} do
     todo_list =
       todo_list
@@ -57,7 +79,7 @@ defmodule Todos.TodoListTest do
       |> TodoList.add(Todo.complete(todo_b))
       |> TodoList.clear_complete()
 
-    assert 1 == TodoList.count(todo_list)
+    assert 1 == TodoList.count_all(todo_list)
     assert [todo_a] = todo_list.todos
   end
 end
