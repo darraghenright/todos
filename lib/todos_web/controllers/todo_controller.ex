@@ -5,11 +5,8 @@ defmodule TodosWeb.TodoController do
   alias TodosWeb.TodoLive
 
   def index(conn, _params) do
-    todo_list =
-      TodoList.new()
-      |> TodoList.add(Todo.new("Eat dinner"))
-      |> TodoList.add(Todo.new("Wash dishes"))
-
-    live_render(conn, TodoLive, session: %{todo_list: todo_list})
+    live_render(conn, TodoLive, session: %{
+      todo_list: TodoList.new()
+    })
   end
 end
