@@ -1,0 +1,16 @@
+<div class="container font-hairline max-w-xl mx-auto text-xl">
+  <h1 class="my-8 text-6xl text-center text-gray-700">Todos</h1>
+  <div class="bg-white shadow rounded">
+
+    <!-- todo form -->
+    <%= live_component(@socket, FormComponent) %>
+
+    <!-- todo list -->
+    <%= for todo <- @todo_list.todos do %>
+      <%= live_component(@socket, TodoComponent, id: todo.id, todo: todo) %>
+    <% end %>
+
+    <!-- todo footer -->
+    <%= live_component(@socket, FooterComponent, todo_list: @todo_list) %>
+  </div>
+</div>
