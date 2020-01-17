@@ -1,9 +1,11 @@
-<div class="border-t border-gray-200 flex justify-between p-3 text-sm">
-  <div><%= count_incomplete(@todo_list) %> items left</div>
-  <div>
-    <button class="text-gray-700 mx-2">All</button>
-    <button class="text-gray-500 mx-2">Active</button>
-    <button class="text-gray-500 mx-2">Completed</button>
+<%= unless empty?(@todo_list) do %>
+  <div class="border-t border-gray-200 flex justify-between p-3 text-sm">
+    <div><%= count_incomplete(@todo_list) %> <%= item_or_items(@todo_list) %> left</div>
+    <div>
+      <button class="text-gray-700 mx-2">All</button>
+      <button class="text-gray-500 mx-2">Active</button>
+      <button class="text-gray-500 mx-2">Completed</button>
+    </div>
+    <button class="text-gray-700">Clear completed</button>
   </div>
-  <button class="text-gray-700">Clear completed</button>
-</div>
+<% end %>

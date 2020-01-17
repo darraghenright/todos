@@ -13,6 +13,7 @@ defmodule Todos.TodoListTest do
 
   test "a new todo_list is empty", %{todo_list: todo_list} do
     assert 0 == TodoList.count_all(todo_list)
+    assert true == TodoList.empty?(todo_list)
   end
 
   test "add a todo to a new todo_list", %{todo_list: todo_list, todo_a: todo} do

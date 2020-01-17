@@ -35,6 +35,10 @@ defmodule Todos.TodoList do
     %TodoList{todo_list | todos: todos}
   end
 
+  def empty?(%TodoList{} = todo_list) do
+    0 === count_all(todo_list)
+  end
+
   def count_all(%TodoList{todos: todos}) do
     length(todos)
   end
