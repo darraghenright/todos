@@ -11,9 +11,13 @@ defmodule TodosWeb.TodoView do
   alias TodosWeb.{FooterComponent, FormComponent, TodoComponent}
 
   def item_or_items(%TodoList{} = todo_list) do
-    case count_all(todo_list) do
+    case count_incomplete(todo_list) do
       1 -> "item"
       _ -> "items"
     end
   end
+
+  def is_checked(true), do: "checked"
+  def is_checked(_), do: nil
+
 end

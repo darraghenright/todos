@@ -23,4 +23,9 @@ defmodule TodosWeb.TodoLive do
     todo_list = TodoList.delete(todo_list, todo)
     {:noreply, assign(socket, :todo_list, todo_list)}
   end
+
+  def handle_info({:toggle_complete, %Todo{} = todo}, %Socket{assigns: %{todo_list: todo_list}} = socket) do
+    todo_list = TodoList.update(todo_list, Todo.toggle_complete(todo))
+    {:noreply, assign(socket, :todo_list, todo_list)}
+  end
 end
