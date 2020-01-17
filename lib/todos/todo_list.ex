@@ -48,6 +48,6 @@ defmodule Todos.TodoList do
   end
 
   def clear_complete(%TodoList{todos: todos} = todo_list) do
-    %TodoList{todo_list | todos: Enum.filter(todos, & &1.complete?)}
+    %TodoList{todo_list | todos: Enum.filter(todos, & !&1.complete?)}
   end
 end

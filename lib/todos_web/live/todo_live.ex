@@ -15,17 +15,30 @@ defmodule TodosWeb.TodoLive do
   end
 
   def handle_info({:new, text}, %Socket{assigns: %{todo_list: todo_list}} = socket) do
-    todo_list = TodoList.add(todo_list, Todo.new(text))
-    {:noreply, assign(socket, :todo_list, todo_list)}
+    todo_list
+    |> TodoList.add(Todo.new(text))
+    |> update_todo_list(socket)
   end
 
   def handle_info({:delete, %Todo{} = todo}, %Socket{assigns: %{todo_list: todo_list}} = socket) do
-    todo_list = TodoList.delete(todo_list, todo)
-    {:noreply, assign(socket, :todo_list, todo_list)}
+    todo_list
+    |> TodoList.delete(todo)
+    |> update_todo_list(socket)
   end
 
   def handle_info({:toggle_complete, %Todo{} = todo}, %Socket{assigns: %{todo_list: todo_list}} = socket) do
-    todo_list = TodoList.update(todo_list, Todo.toggle_complete(todo))
+    todo_list
+    |> TodoList.update(Todo.toggle_complete(todo))
+    |> update_todo_list(socket)
+  end
+
+  def handle_info(:clear_complete, %Socket{assigns: %{todo_list: todo_list}} = socket) do
+    todo_list
+    |> TodoList.clear_complete()
+    |> update_todo_list(socket)
+  end
+
+  defp update_todo_list(%TodoList{} = todo_list, %Socket{} = socket) do
     {:noreply, assign(socket, :todo_list, todo_list)}
   end
 end
