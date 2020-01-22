@@ -17,4 +17,12 @@ defmodule TodosWeb.TodoView do
       _ -> "items"
     end
   end
+
+  def filter_options() do
+    [
+      {:filter_all, "All"},
+      {:filter_active, "Active"},
+      {:filter_complete, "Complete"}
+    ]
+  end
 end
