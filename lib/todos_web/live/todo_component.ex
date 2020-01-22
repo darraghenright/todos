@@ -10,12 +10,15 @@ defmodule TodosWeb.TodoComponent do
   end
 
   def handle_event("delete", _value, %Socket{assigns: %{todo: todo}} = socket) do
-    send(self(), {:delete, todo})
-    {:noreply, socket}
+    emit(socket, {:delete, todo})
   end
 
   def handle_event("toggle_complete", _value, %Socket{assigns: %{todo: todo}} = socket) do
-    send(self(), {:toggle_complete, todo})
+    emit(socket, {:toggle_complete, todo})
+  end
+
+  defp emit(%Socket{} = socket, message) do
+    send(self(), message)
     {:noreply, socket}
   end
 end

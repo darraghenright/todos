@@ -50,4 +50,16 @@ defmodule Todos.TodoList do
   def clear_complete(%TodoList{todos: todos} = todo_list) do
     %TodoList{todo_list | todos: Enum.filter(todos, & !&1.complete?)}
   end
+
+  def filter(%TodoList{todos: todos}, :filter_active) do
+    Enum.filter(todos, & !&1.complete?)
+  end
+
+  def filter(%TodoList{todos: todos}, :filter_complete) do
+    Enum.filter(todos, & &1.complete?)
+  end
+
+  def filter(%TodoList{todos: todos}, _) do
+    todos
+  end
 end

@@ -4,10 +4,10 @@
 
     <%= live_component(@socket, FormComponent, id: :form_component) %>
 
-    <%= for todo <- @todo_list.todos do %>
+    <%= for todo <- filter(@todo_list, @filter) do %>
       <%= live_component(@socket, TodoComponent, id: todo.id, todo: todo) %>
     <% end %>
 
-    <%= live_component(@socket, FooterComponent, id: :footer_component, todo_list: @todo_list) %>
+    <%= live_component(@socket, FooterComponent, id: :footer_component, todo_list: @todo_list, filter: @filter) %>
   </div>
 </div>

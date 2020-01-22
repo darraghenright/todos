@@ -4,7 +4,8 @@ defmodule TodosWeb.TodoView do
   import Todos.TodoList, only: [
     count_all: 1,
     count_incomplete: 1,
-    empty?: 1
+    empty?: 1,
+    filter: 2
   ]
 
   alias Todos.TodoList
