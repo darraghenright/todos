@@ -1,10 +1,5 @@
 <div class="border-t border-gray-200 p-3">
-  <input class="mr-2"
-         type="checkbox"
-         <%= is_checked(@todo.complete?) %>
-         phx-click="toggle_complete">
-  <span class="<%= @todo.complete? and 'line-through text-gray-500' %>">
-    <%= @todo.text %>
-  </span>
+  <%= checkbox :todo, :complete, class: "mr-2", checked: @todo.complete?, phx_click: "toggle_complete" %>
+  <%= content_tag :span, @todo.text, class: @todo.complete? and "line-through text-gray-500" %>
   <button class="float-right text-red-700" phx-click="delete">&times;</button>
 </div>

@@ -8,6 +8,6 @@
       <%= live_component(@socket, TodoComponent, id: todo.id, todo: todo) %>
     <% end %>
 
-    <%= live_component(@socket, FooterComponent, id: :footer, todo_list: @todo_list) %>
+    <%= live_component(@socket, FooterComponent, id: :footer_component, todo_list: @todo_list) %>
   </div>
 </div>

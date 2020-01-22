@@ -1,6 +1,7 @@
 <form class="p-3" phx-submit="new">
-  <input class="w-full"
-         name="text"
-         type="text"
-         placeholder="What needs to be done?">
+  <%= text_input :todo, :text, class: "w-full", placeholder: "What needs to be done?" %>
 </form>
+
+
+
+

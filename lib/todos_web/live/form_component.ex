@@ -9,7 +9,7 @@ defmodule TodosWeb.FormComponent do
     View.render TodoView, "form_component.html", assigns
   end
 
-  def handle_event("new", %{"text" => text}, %Socket{} = socket) do
+  def handle_event("new", %{"todo" => %{"text" => text}}, %Socket{} = socket) do
     send(self(), {:new, text})
     {:noreply, socket}
   end

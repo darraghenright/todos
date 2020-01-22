@@ -16,8 +16,4 @@ defmodule TodosWeb.TodoView do
       _ -> "items"
     end
   end
-
-  def is_checked(true), do: "checked"
-  def is_checked(_), do: nil
-
 end
