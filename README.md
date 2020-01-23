@@ -2,7 +2,7 @@
 
 FEATURES
 
-* better validation
+* better validation — validate on todo_list
 * soft-persist data — pass from controller into live view, session key?
 * edit mode
 * can we refactor anything? for example TodoList.Filter.filter_by or something

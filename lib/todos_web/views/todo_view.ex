@@ -1,11 +1,8 @@
 defmodule TodosWeb.TodoView do
   use TodosWeb, :view
 
-  import Todos.TodoList, only: [
-    count_incomplete: 1,
-    empty?: 1,
-    filter: 2
-  ]
+  import Todos.TodoList, only: [count_incomplete: 1, empty?: 1]
+  import Todos.TodoList.Filter, only: [filter: 2]
 
   alias Todos.TodoList
   alias TodosWeb.{FooterComponent, FormComponent, TodoComponent}
