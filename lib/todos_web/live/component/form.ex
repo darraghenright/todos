@@ -6,7 +6,7 @@ defmodule TodosWeb.FormComponent do
   alias TodosWeb.TodoView
 
   def render(assigns) do
-    View.render TodoView, "form_component.html", assigns
+    View.render TodoView, "component/form.html", assigns
   end
 
   def handle_event("new", %{"todo" => %{"text" => text}}, %Socket{} = socket) do

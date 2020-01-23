@@ -6,7 +6,7 @@ defmodule TodosWeb.TodoComponent do
   alias TodosWeb.TodoView
 
   def render(assigns) do
-    View.render(TodoView, "todo_component.html", assigns)
+    View.render(TodoView, "component/todo.html", assigns)
   end
 
   def handle_event("delete", _value, %Socket{assigns: %{todo: todo}} = socket) do

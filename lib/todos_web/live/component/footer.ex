@@ -6,7 +6,7 @@ defmodule TodosWeb.FooterComponent do
   alias TodosWeb.TodoView
 
   def render(assigns) do
-    View.render(TodoView, "footer_component.html", assigns)
+    View.render(TodoView, "component/footer.html", assigns)
   end
 
   def handle_event("clear_complete", _value, %Socket{} = socket) do
