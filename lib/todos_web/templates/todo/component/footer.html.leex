@@ -1,6 +1,8 @@
 <%= unless empty?(@todo_list) do %>
   <div class="border-t border-gray-200 flex justify-between p-3 text-sm">
-    <div><%= count_incomplete(@todo_list) %> <%= item_or_items(@todo_list) %> left</div>
+    <div class="flex-1">
+      <%= count_incomplete(@todo_list) %> <%= item_or_items(@todo_list) %> left
+    </div>
     <div>
       <%= for {key, name} <- filter_options() do %>
         <%= if key == @filter do %>
@@ -14,10 +16,12 @@
         <% end %>
       <% end %>
     </div>
-    <%= if has_complete?(@todo_list) do %>
-      <button class="text-red-700" phx-click="clear_complete">
-        Clear complete
-      </button>
-    <% end %>
+    <div class="flex-1">
+      <%= if has_complete?(@todo_list) do %>
+        <button class="text-red-700 float-right" phx-click="clear_complete">
+          Clear complete
+        </button>
+      <% end %>
+    <div>
   </div>
 <% end %>
