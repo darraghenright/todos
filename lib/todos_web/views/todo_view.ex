@@ -1,7 +1,7 @@
 defmodule TodosWeb.TodoView do
   use TodosWeb, :view
 
-  import Todos.TodoList, only: [count_incomplete: 1, empty?: 1]
+  import Todos.TodoList, only: [has_complete?: 1, count_incomplete: 1, empty?: 1]
   import Todos.TodoList.Filter, only: [filter: 2]
 
   alias Todos.TodoList
@@ -21,4 +21,5 @@ defmodule TodosWeb.TodoView do
       {:filter_complete, "Complete"}
     ]
   end
+
 end

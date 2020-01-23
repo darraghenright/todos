@@ -14,6 +14,10 @@
         <% end %>
       <% end %>
     </div>
-    <button class="text-gray-700" phx-click="clear_complete">Clear complete</button>
+    <%= if has_complete?(@todo_list) do %>
+      <button class="text-red-700" phx-click="clear_complete">
+        Clear complete
+      </button>
+    <% end %>
   </div>
 <% end %>

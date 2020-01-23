@@ -73,6 +73,24 @@ defmodule Todos.TodoListTest do
     assert 0 = TodoList.count_incomplete(todo_list)
   end
 
+  test "check and count complete todos in a todo_list", %{todo_list: todo_list, todo_a: todo_a, todo_b: todo_b} do
+    todo_list =
+      todo_list
+      |> TodoList.add(todo_a)
+      |> TodoList.add(todo_b)
+
+    assert 0 == TodoList.count_complete(todo_list)
+    assert false == TodoList.has_complete?(todo_list)
+
+    todo_list = TodoList.update(todo_list, Todo.complete(todo_a))
+    assert 1 = TodoList.count_complete(todo_list)
+    assert true == TodoList.has_complete?(todo_list)
+
+    todo_list = TodoList.update(todo_list, Todo.complete(todo_b))
+    assert 2 = TodoList.count_complete(todo_list)
+    assert true == TodoList.has_complete?(todo_list)
+  end
+
   test "remove complete todos from a todo_list", %{todo_list: todo_list, todo_a: todo_a, todo_b: todo_b} do
     todo_list =
       todo_list

@@ -25,11 +25,11 @@ defmodule Todos.TodoList.FilterTest do
     assert [incomplete, complete] = Filter.filter(todo_list, :filter_all)
   end
 
-  test ":filter_active shows incomplete todos", %{complete: complete, incomplete: incomplete, todo_list: todo_list} do
+  test ":filter_active shows incomplete todos", %{incomplete: incomplete, todo_list: todo_list} do
     assert [incomplete] == Filter.filter(todo_list, :filter_active)
   end
 
-  test ":filter_active shows complete todos", %{complete: complete, incomplete: incomplete, todo_list: todo_list} do
+  test ":filter_complete shows complete todos", %{complete: complete, todo_list: todo_list} do
     assert [complete] == Filter.filter(todo_list, :filter_complete)
   end
 end

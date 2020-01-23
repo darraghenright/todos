@@ -43,8 +43,16 @@ defmodule Todos.TodoList do
     length(todos)
   end
 
+  def count_complete(%TodoList{todos: todos}) do
+    Enum.count(todos, & &1.complete?)
+  end
+
   def count_incomplete(%TodoList{todos: todos}) do
     Enum.count(todos, & !&1.complete?)
+  end
+
+  def has_complete?(%TodoList{} = todo_list) do
+    0 != count_complete(todo_list)
   end
 
   def clear_complete(%TodoList{todos: todos} = todo_list) do

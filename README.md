@@ -10,6 +10,8 @@ FEATURES
 * docblocks
 * tests for new core stuff
 * @apply tailwind styles
+* stateless components?
+* confirmation for destructive actions?
 
 To start your Phoenix server:
 
