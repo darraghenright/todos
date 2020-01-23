@@ -19,6 +19,10 @@ defmodule TodosWeb.TodoLive do
     View.render(TodoView, "live/todo.html", assigns)
   end
 
+  def handle_info({:new, ""}, %Socket{} = socket) do
+    {:noreply, socket}
+  end
+
   def handle_info({:new, text}, %Socket{assigns: %{todo_list: todo_list}} = socket) do
     todo_list
     |> TodoList.add(Todo.new(text))

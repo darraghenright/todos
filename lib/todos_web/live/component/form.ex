@@ -10,8 +10,7 @@ defmodule TodosWeb.FormComponent do
   end
 
   def handle_event("new", %{"todo" => %{"text" => text}}, %Socket{} = socket) do
-    # TODO temporary validation, we'll move this soon.
-    if String.length(text) > 0, do: send(self(), {:new, text})
+    send(self(), {:new, text})
     {:noreply, socket}
   end
 end
