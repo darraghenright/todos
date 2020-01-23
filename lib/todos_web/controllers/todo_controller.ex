@@ -1,7 +1,7 @@
 defmodule TodosWeb.TodoController do
   use TodosWeb, :controller
 
-  alias Todos.{Todo, TodoList}
+  alias Todos.TodoList
   alias TodosWeb.TodoLive
 
   def index(conn, _params) do

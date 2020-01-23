@@ -1,5 +1,16 @@
 # Todos
 
+FEATURES
+
+* better validation
+* soft-persist data — pass from controller into live view, session key?
+* edit mode
+* can we refactor anything? for example TodoList.Filter.filter_by or something
+* specs
+* docblocks
+* tests for new core stuff
+* @apply tailwind styles
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
