@@ -11,13 +11,13 @@ defmodule Todos.TodoList do
     %TodoList{todo_list | todos: [todo | todos]}
   end
 
-  def find(%TodoList{todos: todos}, %Todo{} = todo) do
-    Enum.find_index(todos, & &1.id == todo.id)
+  def find(%TodoList{todos: todos}, id) do
+    Enum.find(todos, & &1.id == id)
   end
 
   def update(%TodoList{todos: todos} = todo_list, %Todo{} = todo) do
     todos =
-      case TodoList.find(todo_list, todo) do
+      case Enum.find_index(todos, & &1.id == todo.id) do
         nil -> todos
         position -> List.replace_at(todos, position, todo)
       end
@@ -27,7 +27,7 @@ defmodule Todos.TodoList do
 
   def delete(%TodoList{todos: todos} = todo_list, %Todo{} = todo) do
     todos =
-      case TodoList.find(todo_list, todo) do
+      case Enum.find_index(todos, & &1.id == todo.id) do
         nil -> todos
         position -> List.delete_at(todos, position)
       end
@@ -39,6 +39,7 @@ defmodule Todos.TodoList do
     0 === count_all(todo_list)
   end
 
+  # @TODO move these to an aggregate module?
   def count_all(%TodoList{todos: todos}) do
     length(todos)
   end

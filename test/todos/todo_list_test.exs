@@ -32,10 +32,10 @@ defmodule Todos.TodoListTest do
     assert [todo_b, todo_a] == todo_list.todos
   end
 
-  test "find todo index in todo_list", %{todo_list: todo_list, todo_a: todo} do
-    assert nil == TodoList.find(todo_list, todo)
+  test "find index of a todo in todo_list", %{todo_list: todo_list, todo_a: todo} do
+    assert nil == TodoList.find(todo_list, todo.id)
     todo_list = TodoList.add(todo_list, todo)
-    assert 0 == TodoList.find(todo_list, todo)
+    assert todo == TodoList.find(todo_list, todo.id)
   end
 
   test "update a todo in todo_list", %{todo_list: todo_list, todo_a: todo} do
