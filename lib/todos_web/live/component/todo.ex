@@ -5,6 +5,10 @@ defmodule TodosWeb.TodoComponent do
   alias Phoenix.View
   alias TodosWeb.TodoView
 
+  def mount(%Socket{} = socket) do
+    {:ok, assign(socket, :editing?, false)}
+  end
+
   def render(assigns) do
     View.render(TodoView, "component/todo.html", assigns)
   end
@@ -15,6 +19,24 @@ defmodule TodosWeb.TodoComponent do
 
   def handle_event("toggle_complete", _value, %Socket{assigns: %{todo: todo}} = socket) do
     emit(socket, {:toggle_complete, todo})
+  end
+
+  def handle_event("edit", _value, %Socket{} = socket) do
+    {:noreply, assign(socket, :editing?, true)}
+  end
+
+  def handle_event("update", %{"todo" => %{"text" => text}}, %Socket{assigns: %{id: id}} = socket) do
+    socket
+    |> assign(:editing?, false)
+    |> emit({:update, id, text})
+  end
+
+  def handle_event("keyup", %{"code" => "Escape"}, %Socket{} = socket) do
+    {:noreply, assign(socket, :editing?, false)}
+  end
+
+  def handle_event("keyup", _value, %Socket{} = socket) do
+    {:noreply, socket}
   end
 
   defp emit(%Socket{} = socket, message) do

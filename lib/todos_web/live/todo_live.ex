@@ -29,6 +29,12 @@ defmodule TodosWeb.TodoLive do
     |> update_todo_list(socket)
   end
 
+  def handle_info({:update, id, text}, %Socket{assigns: %{todo_list: todo_list}} = socket) do
+    todo_list
+    |> TodoList.update(id, text)
+    |> update_todo_list(socket)
+  end
+
   def handle_info({:delete, %Todo{} = todo}, %Socket{assigns: %{todo_list: todo_list}} = socket) do
     todo_list
     |> TodoList.delete(todo)

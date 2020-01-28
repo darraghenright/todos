@@ -15,6 +15,13 @@ defmodule Todos.TodoList do
     Enum.find(todos, & &1.id == id)
   end
 
+  def update(%TodoList{} = todo_list, id, text) do
+    case find(todo_list, id) do
+      nil -> todo_list
+      todo -> update(todo_list, Todo.update(todo, text))
+    end
+  end
+
   def update(%TodoList{todos: todos} = todo_list, %Todo{} = todo) do
     todos =
       case Enum.find_index(todos, & &1.id == todo.id) do
@@ -39,7 +46,6 @@ defmodule Todos.TodoList do
     0 === count_all(todo_list)
   end
 
-  # @TODO move these to an aggregate module?
   def count_all(%TodoList{todos: todos}) do
     length(todos)
   end
