@@ -1,6 +1,6 @@
 <div class="border-t border-gray-200 p-3">
   <%= if @editing? do %>
-    <form phx-submit="update">
+    <form class="ml-5" phx-submit="update">
       <%= text_input :todo, :text,
         class: "w-full",
         phx_keyup: "keyup",
@@ -8,16 +8,17 @@
       %>
     </form>
   <% else %>
-    <%= checkbox :todo, :complete,
-      checked: @todo.complete?,
-      class: "mr-2",
-      id: @todo.id,
-      phx_click: "toggle_complete"
-    %>
-    <%= content_tag :span, @todo.text,
-      class: @todo.complete? and "line-through text-gray-500",
-      phx_click: "edit"
-    %>
-    <button class="float-right text-red-700" phx-click="delete">&times;</button>
+    <div phx-click="edit" title="Click to edit">
+      <%= checkbox :todo, :complete,
+        checked: @todo.complete?,
+        class: "mr-2",
+        id: @todo.id,
+        phx_click: "toggle_complete"
+      %>
+      <%= content_tag :span, @todo.text,
+        class: @todo.complete? and "line-through text-gray-500"
+      %>
+      <button class="float-right text-red-700" phx-click="delete">&times;</button>
+    </div>
   <% end %>
 </div>
