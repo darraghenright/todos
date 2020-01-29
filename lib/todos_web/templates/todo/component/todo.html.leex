@@ -3,7 +3,10 @@
     <form class="ml-5" phx-submit="update">
       <%= text_input :todo, :text,
         class: "w-full",
+        id: "todo_edit_#{@todo.id}",
         phx_keyup: "keyup",
+        phx_hook: "select",
+        phx_blur: "cancel",
         value: @todo.text
       %>
     </form>
@@ -12,7 +15,7 @@
       <%= checkbox :todo, :complete,
         checked: @todo.complete?,
         class: "mr-2",
-        id: @todo.id,
+        id: "todo_checkbox_#{@todo.id}",
         phx_click: "toggle_complete"
       %>
       <%= content_tag :span, @todo.text,

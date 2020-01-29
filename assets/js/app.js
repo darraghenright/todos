@@ -2,4 +2,16 @@ import 'phoenix_html'
 import { Socket } from 'phoenix'
 import LiveSocket from 'phoenix_live_view'
 
-new LiveSocket('/todos', Socket).connect()
+let hooks = {
+  /**
+   * Select input text on focus
+   */
+  select: {
+    mounted() {
+      this.el.addEventListener('focus', ({ target }) => target.select())
+      this.el.focus()
+    }
+  }
+}
+
+new LiveSocket('/todos', Socket, { hooks }).connect()

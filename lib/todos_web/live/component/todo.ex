@@ -25,6 +25,10 @@ defmodule TodosWeb.TodoComponent do
     {:noreply, assign(socket, :editing?, true)}
   end
 
+  def handle_event("update", %{"todo" => %{"text" => ""}}, %Socket{} = socket) do
+    {:noreply, assign(socket, :editing?, false)}
+  end
+
   def handle_event("update", %{"todo" => %{"text" => text}}, %Socket{assigns: %{id: id}} = socket) do
     socket
     |> assign(:editing?, false)
@@ -37,6 +41,10 @@ defmodule TodosWeb.TodoComponent do
 
   def handle_event("keyup", _value, %Socket{} = socket) do
     {:noreply, socket}
+  end
+
+  def handle_event("cancel", _value, %Socket{} = socket) do
+    {:noreply, assign(socket, :editing?, false)}
   end
 
   defp emit(%Socket{} = socket, message) do
