@@ -4,6 +4,10 @@
 
 Todos app with Elixir and Phoenix LiveView. With as little JS as possible :)
 
+Video:
+
+[![Todos App with Elixir and Phoenix LiveView](https://img.youtube.com/vi/_rQqTXzHV98/0.jpg)](https://www.youtube.com/watch?v=_rQqTXzHV98)
+
 ## Up and Running
 
 * Clone repo
